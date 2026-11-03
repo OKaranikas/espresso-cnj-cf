@@ -1,0 +1,12 @@
+{
+  "systems": [
+    {
+      "alias": "WITZ_SERVICE",
+      "uri": "http://localhost:4004"
+    },
+    {
+      "alias": "KUNDEN_WITZE",
+      "uri": "http://localhost:4005"
+    }
+  ]
+}

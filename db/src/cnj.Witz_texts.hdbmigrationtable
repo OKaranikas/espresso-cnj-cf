@@ -1,0 +1,7 @@
+== version=1
+COLUMN TABLE cnj_Witz_texts (
+  locale NVARCHAR(14) NOT NULL,
+  ID NVARCHAR(36) NOT NULL,
+  "TEXT" NVARCHAR(5000) NOT NULL,
+  PRIMARY KEY(locale, ID)
+)

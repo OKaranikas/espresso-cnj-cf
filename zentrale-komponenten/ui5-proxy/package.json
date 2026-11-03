@@ -1,0 +1,14 @@
+{
+  "name": "@espresso/cnj-ui5-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Zentraler Zugriffspunkt fuer die SAPUI5-Laufzeit: leitet /resources und /test-resources an einen konfigurierbaren Upstream weiter (Standard: das SAP-CDN), statt dass jede Fiori-Anwendung selbst eine CDN-URL fest verdrahtet. Wird sowohl als eigenstaendige Cloud-Foundry-App als auch als Express-Middleware fuer die lokale Entwicklung (srv/server.js) genutzt.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "MODERATION_SPERRLISTE": {
+    "target": {
+      "schema": "MODERATION",
+      "object": "SPERRLISTE"
+    }
+  }
+}

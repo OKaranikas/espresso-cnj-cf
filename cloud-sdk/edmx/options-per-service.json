@@ -1,0 +1,12 @@
+{
+  "edmx/WitzService.edmx": {
+    "packageName": "witz-service",
+    "directoryName": "witz-service",
+    "basePath": "/odata/v4/witze"
+  },
+  "edmx/KundenWitzService.edmx": {
+    "packageName": "kundenwitz-service",
+    "directoryName": "kundenwitz-service",
+    "basePath": "/odata/v4/kundenwitze"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "espresso-cnj-hana-cf",
+  "version": "1.0.0",
+  "description": "Chuck Norris Jokes auf der SAP BTP, Cloud Foundry Environment - Beispielprojekt zum Buch \"Entwicklung in der SAP BTP - Cloud Foundry\" (Espresso Tutorials)",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4",
+    "express": "^5"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1",
+    "@cap-js/sqlite": "^3",
+    "@sap-cloud-sdk/test-util": "^4.9.1",
+    "@sap/cds-dk": "^10",
+    "nock": "^13.5.6"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build": "cds build --production",
+    "test": "cds test",
+    "check-versions": "node zentrale-komponenten/check-versions.js"
+  },
+  "cds": {
+    "requires": {
+      "KundenWitzService": {
+        "kind": "odata",
+        "model": "srv/external/KundenWitzService",
+        "credentials": {
+          "destination": "KUNDEN_WITZE",
+          "path": "/odata/v4/kundenwitze"
+        }
+      },
+      "[development]": {
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        },
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "lea": {
+              "password": "leserin",
+              "roles": [
+                "Leser"
+              ]
+            },
+            "paul": {
+              "password": "pflege",
+              "roles": [
+                "Leser",
+                "Pflege"
+              ]
+            },
+            "entwickler": {
+              "password": "geheim",
+              "roles": [
+                "Leser",
+                "Pflege"
+              ]
+            }
+          }
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana",
+          "impl": "@cap-js/hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    },
+    "i18n": {
+      "folders": [
+        "_i18n"
+      ],
+      "default_language": "en"
+    }
+  }
+}

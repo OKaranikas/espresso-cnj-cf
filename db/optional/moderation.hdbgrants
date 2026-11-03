@@ -1,0 +1,20 @@
+{
+  "moderation-service": {
+    "object_owner": {
+      "schema_privileges": [
+        {
+          "reference": "MODERATION",
+          "privileges_with_grant_option": ["SELECT"]
+        }
+      ]
+    },
+    "application_user": {
+      "schema_privileges": [
+        {
+          "reference": "MODERATION",
+          "privileges": ["SELECT"]
+        }
+      ]
+    }
+  }
+}

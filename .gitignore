@@ -1,0 +1,24 @@
+node_modules/
+gen/
+dist/
+target/
+mta_archives/
+.env
+default-env.json
+*.db
+*.sqlite
+.DS_Store
+.idea/
+.vscode/
+cloud-sdk/dist/
+java/srv/src/main/resources/edmx/
+java/srv/src/gen/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+# Caches der CI-Pipeline (.github/workflows/pipeline.yml), falls lokal nachgestellt
+.npm-cache/
+.m2/
+.cache/
+java/srv/src/main/resources/_i18n/

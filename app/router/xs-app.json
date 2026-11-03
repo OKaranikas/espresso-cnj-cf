@@ -1,0 +1,33 @@
+{
+  "welcomeFile": "/deespressocnjwitze/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/odata/(.*)$",
+      "target": "/odata/$1",
+      "destination": "cnj-srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/statistik/(.*)$",
+      "target": "/$1",
+      "destination": "cnj-statistik-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/(resources|test-resources)/(.*)$",
+      "target": "/$1/$2",
+      "destination": "cnj-ui5-proxy-api",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
