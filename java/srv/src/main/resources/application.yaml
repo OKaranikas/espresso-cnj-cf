@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: cnj-java
+
+cds:
+  odata-v4:
+    endpoint:
+      path: /odata/v4
+  security:
+    authentication:
+      mode: model-strict
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  sql:
+    init:
+      platform: h2
+
+cds:
+  data-source:
+    auto-config:
+      enabled: false
+  security:
+    mock:
+      users:
+        lea:
+          password: leserin
+          roles: [Leser]
+        paul:
+          password: pflege
+          roles: [Leser, Pflege]
+        # Technischer Benutzer der Destination WITZ_SERVICE
+        # (siehe cloud-sdk/destinations.json).
+        entwickler:
+          password: geheim
+          roles: [Leser, Pflege]
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud

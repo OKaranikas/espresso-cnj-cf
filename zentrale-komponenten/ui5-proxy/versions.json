@@ -1,0 +1,31 @@
+{
+  "_hinweis": "Einzige Quelle fuer Versionen externer Bibliotheken, die von mehr als einem Node-Projekt in diesem Repository verwendet werden. Wird von zentrale-komponenten/check-versions.js gegen die einzelnen package.json-Dateien und app/witze/ui5.yaml geprueft. Fuer Java gilt dasselbe Prinzip bereits laenger: dort uebernimmt java/pom.xml (BOM-Importe von cds-services-bom, sdk-modules-bom, java-bom) genau diese Rolle - die java-Eintraege hier sind nur zur Uebersicht gespiegelt und werden nicht automatisch abgeglichen.",
+
+  "ui5": {
+    "version": "1.152.0",
+    "verwendetIn": [
+      "zentrale-komponenten/ui5-proxy (Standard-Upstream https://ui5.sap.com/<version>)",
+      "app/witze/ui5.yaml (framework.version, fuer \"ui5 serve\"/\"ui5 build\")"
+    ]
+  },
+
+  "node": {
+    "@sap/cds": "^10",
+    "@sap/cds-dk": "^10",
+    "@sap/xssec": "^4",
+    "@sap/approuter": "^20",
+    "@ui5/cli": "^4",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap-cloud-sdk/odata-v4": "^4",
+    "@sap-cloud-sdk/util": "^4"
+  },
+
+  "java": {
+    "_hinweis": "Nur Referenz, siehe oben. Bei Aenderung bitte java/pom.xml direkt anpassen.",
+    "cds.services.version": "5.1.1",
+    "cloud-sdk.version": "5.34.0",
+    "xsuaa.version": "4.0.7"
+  }
+}

@@ -1,0 +1,19 @@
+_schema-version: "3.3"
+ID: cnj-app.prod
+extends: cnj-app
+
+modules:
+  - name: cnj-java
+    parameters:
+      memory: 2G
+      instances: 2
+
+  - name: cnj-srv
+    parameters:
+      instances: 2
+
+resources:
+  - name: cnj-db
+    parameters:
+      config:
+        database_id: 11111111-2222-3333-4444-555555555555

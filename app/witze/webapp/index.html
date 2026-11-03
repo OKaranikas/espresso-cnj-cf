@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuck Norris Jokes</title>
+  <!-- SAPUI5 setzt mit der Klasse sapUiBody zwar height:100% auf den
+       body, das <html>-Element bekommt aber von keinem Stylesheet eine
+       Hoehe. Eine Prozenthoehe ohne Bezugsgroesse wirkt nicht, die
+       Anwendung waere damit 0 Pixel hoch - die Seite bliebe weiss,
+       obwohl sie vollstaendig geladen ist. Deshalb die Hoehenkette
+       vom html-Element bis zum Komponenten-Container. -->
+  <style>
+    html,
+    body,
+    body > div,
+    #container,
+    #container-uiarea {
+      height: 100%;
+    }
+  </style>
+  <!-- Die SAPUI5-Laufzeit wird nicht mehr fest auf das SAP-CDN verdrahtet,
+       sondern relativ ueber /resources bezogen - das ist der zentrale
+       Zugriffspunkt aus zentrale-komponenten/ui5-proxy. Er liefert lokal
+       (srv/server.js) wie produktiv (Modul cnj-zentrale-komponenten,
+       verdrahtet ueber app/router/xs-app.json) dieselbe Middleware aus und
+       leitet standardmaessig an das SAP-CDN weiter, siehe
+       zentrale-komponenten/README.md. Beim lokalen Start mit "ui5 serve"
+       bedient das UI5-Tooling denselben Pfad selbst (framework-Abschnitt in
+       ui5.yaml).
+       data-sap-ui-flex-connectors: Ohne Fiori Launchpad gibt es keinen
+       Speicher fuer Varianten (/sap/bc/lrep antwortet mit 404). Der
+       LocalStorageConnector legt gespeicherte Filter- und Tabellenvarianten
+       im Browser ab - je Benutzer und Geraet. -->
+  <script id="sap-ui-bootstrap"
+    src="/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-async="true"
+    data-sap-ui-compat-version="edge"
+    data-sap-ui-frame-options="trusted"
+    data-sap-ui-flex-connectors='[{"connector": "LocalStorageConnector"}]'
+    data-sap-ui-resource-roots='{"de.espresso.cnj.witze": "./"}'
+    data-sap-ui-on-init="module:sap/ui/core/ComponentSupport">
+  </script>
+</head>
+
+<body class="sapUiBody">
+  <div data-sap-ui-component data-name="de.espresso.cnj.witze" data-id="container" data-settings='{"id":"witze"}'
+    style="height: 100%"></div>
+</body>
+
+</html>

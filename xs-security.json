@@ -1,0 +1,51 @@
+{
+  "xsappname": "cnj-app",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of the Chuck Norris Jokes application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Leser",
+      "description": "Witze lesen"
+    },
+    {
+      "name": "$XSAPPNAME.Pflege",
+      "description": "Witze und Quellen pflegen"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Leser",
+      "description": "Witze lesen",
+      "scope-references": [
+        "$XSAPPNAME.Leser"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "Pflege",
+      "description": "Witze und Quellen pflegen",
+      "scope-references": [
+        "$XSAPPNAME.Leser",
+        "$XSAPPNAME.Pflege"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "CNJ_Leser",
+      "description": "Chuck Norris Jokes - Leseberechtigung",
+      "role-template-references": [
+        "$XSAPPNAME.Leser"
+      ]
+    },
+    {
+      "name": "CNJ_Pflege",
+      "description": "Chuck Norris Jokes - Pflegeberechtigung",
+      "role-template-references": [
+        "$XSAPPNAME.Pflege"
+      ]
+    }
+  ]
+}

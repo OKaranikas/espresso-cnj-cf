@@ -1,0 +1,26 @@
+PROCEDURE BEWERTUNG_ANPASSEN (
+  IN iv_quelle_id NVARCHAR(36),
+  IN iv_prozent   DECIMAL(5,2)
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+  DECLARE ungueltiger_prozentsatz CONDITION FOR SQL_ERROR_CODE 10001;
+
+  IF :iv_prozent < -50 OR :iv_prozent > 50 THEN
+    SIGNAL ungueltiger_prozentsatz
+      SET MESSAGE_TEXT = 'Prozentsatz ausserhalb des erlaubten Bereichs';
+  END IF;
+
+  lt_witze = SELECT ID, BEWERTUNG
+               FROM CNJ_WITZ
+              WHERE QUELLE_ID = :iv_quelle_id
+                AND BEWERTUNG IS NOT NULL;
+
+  UPDATE CNJ_WITZ
+     -- Auf 0-5 Sterne begrenzen, siehe CHECK-Constraint cnj_Witz_bewertung_0_5.
+     SET BEWERTUNG = LEAST(5, GREATEST(0, ROUND(BEWERTUNG * (1 + :iv_prozent / 100), 0))),
+         MODIFIEDAT = CURRENT_UTCTIMESTAMP
+   WHERE ID IN (SELECT ID FROM :lt_witze);
+END

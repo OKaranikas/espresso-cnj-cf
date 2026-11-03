@@ -1,0 +1,98 @@
+{
+  "namespace": "cnj",
+  "definitions": {
+    "cnj.Witz": {
+      "kind": "entity",
+      "@cds.persistence.journal": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "ID"
+        },
+        "createdAt": {
+          "type": "cds.Timestamp",
+          "@cds.persistence.name": "CREATEDAT"
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "CREATEDBY"
+        },
+        "modifiedAt": {
+          "type": "cds.Timestamp",
+          "@cds.persistence.name": "MODIFIEDAT"
+        },
+        "modifiedBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "MODIFIEDBY"
+        },
+        "text": {
+          "type": "cds.String",
+          "length": 5000,
+          "notNull": true,
+          "@cds.persistence.name": "TEXT"
+        },
+        "apiId": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "APIID"
+        },
+        "bewertung": {
+          "@sql.append": "CHECK (bewertung BETWEEN 0 AND 5)",
+          "type": "cds.Integer",
+          "@cds.persistence.name": "BEWERTUNG"
+        },
+        "kategorie_code": {
+          "type": "cds.String",
+          "length": 20,
+          "@odata.foreignKey4": "kategorie",
+          "@cds.persistence.name": "KATEGORIE_CODE"
+        },
+        "quelle_ID": {
+          "type": "cds.String",
+          "length": 36,
+          "@odata.foreignKey4": "quelle",
+          "@cds.persistence.name": "QUELLE_ID"
+        }
+      },
+      "@cds.persistence.name": "CNJ_WITZ"
+    },
+    "cnj.Witz.texts": {
+      "kind": "entity",
+      "@odata.draft.enabled": false,
+      "@cds.persistence.journal": true,
+      "elements": {
+        "locale": {
+          "key": true,
+          "type": "cds.String",
+          "length": 14,
+          "@cds.persistence.name": "LOCALE"
+        },
+        "ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "ID"
+        },
+        "text": {
+          "type": "cds.String",
+          "length": 5000,
+          "notNull": true,
+          "@cds.persistence.name": "TEXT"
+        }
+      },
+      "@cds.persistence.name": "CNJ_WITZ_TEXTS"
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v7.1.1",
+    "compilerCsnFlavor": "$internal",
+    "flavor": "inferred",
+    "minified": true,
+    "build": "CDS Build v10.1.1"
+  },
+  "$version": "2.0"
+}

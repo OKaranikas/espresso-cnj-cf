@@ -1,0 +1,13 @@
+{
+  "name": "de.espresso.cnj.witze",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@ui5/cli": "^4",
+    "ui5-task-zipper": "^3"
+  },
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build --clean-dest --dest dist"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "cnj-approuter",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@sap/approuter": "^20",
+    "jwt-decode": "^4"
+  },
+  "scripts": {
+    "start": "node approuter-start.js"
+  }
+}

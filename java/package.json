@@ -1,0 +1,17 @@
+{
+  "name": "cnj-java-cds",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CDS-Tooling fuer das CAP-Java-Modul der Chuck-Norris-Jokes-Anwendung",
+  "devDependencies": {
+    "@sap/cds-dk": "^10"
+  },
+  "cds": {
+    "i18n": {
+      "folders": [
+        "../_i18n"
+      ],
+      "default_language": "en"
+    }
+  }
+}

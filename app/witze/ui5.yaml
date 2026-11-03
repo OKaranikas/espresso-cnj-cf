@@ -1,0 +1,32 @@
+specVersion: "3.0"
+type: application
+metadata:
+  name: de.espresso.cnj.witze
+framework:
+  name: SAPUI5
+  version: "1.152.0"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.fe.templates
+    - name: themelib_sap_horizon
+resources:
+  configuration:
+    paths:
+      webapp: webapp
+builder:
+  resources:
+    excludes:
+      - "/test/**"
+  # "ui5 build" kopiert nur den Inhalt von webapp nach dist. Das HTML5
+  # Application Repository erwartet aber ein Archiv, das zusaetzlich die
+  # xs-app.json enthaelt. Beides erledigt ui5-task-zipper: er legt
+  # dist/cnj-witze-ui.zip an - genau den Namen, den die mta.yaml im Modul
+  # cnj-ui-deployer als Artefakt anfordert.
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: cnj-witze-ui
+        additionalFiles:
+          - xs-app.json

@@ -1,0 +1,4 @@
+Flask==3.1.2
+cfenv==0.5.3
+sap-xssec==4.5.0
+hdbcli==2.25.29

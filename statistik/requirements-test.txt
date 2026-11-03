@@ -1,0 +1,5 @@
+# Zusaetzlich zu requirements.txt nur fuer Tests/CI - nicht Teil des
+# Cloud-Foundry-Deployments (der python_buildpack installiert ausschliesslich
+# requirements.txt).
+-r requirements.txt
+pytest==9.1.1

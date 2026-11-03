@@ -1,0 +1,135 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "de.espresso.cnj.witze",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/witze/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.136.0",
+      "libs": {
+        "sap.fe.templates": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "mainService",
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "WitzeList",
+          "target": "WitzeList"
+        },
+        {
+          "pattern": "Witze({key}):?query:",
+          "name": "WitzeObjectPage",
+          "target": "WitzeObjectPage"
+        }
+      ],
+      "targets": {
+        "WitzeList": {
+          "type": "Component",
+          "id": "WitzeList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Witze",
+              "variantManagement": "Page",
+              "navigation": {
+                "Witze": {
+                  "detail": {
+                    "route": "WitzeObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "actions": {
+                    "statistik": {
+                      "press": "de.espresso.cnj.witze.ext.Statistik.anzeigen",
+                      "text": "{i18n>StatistikButton}",
+                      "requiresSelection": false,
+                      "enabled": true,
+                      "visible": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "WitzeObjectPage": {
+          "type": "Component",
+          "id": "WitzeObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Witze",
+              "content": {
+                "header": {
+                  "actions": {
+                    "zurUebersicht": {
+                      "press": "de.espresso.cnj.witze.ext.Navigation.zurUebersicht",
+                      "text": "{i18n>ZurUebersicht}",
+                      "visible": true,
+                      "enabled": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "flexEnabled": true,
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#de.espresso.cnj.witze::WitzeObjectPage": {
+            "controllerName": "de.espresso.cnj.witze.ext.ObjectPageExt"
+          }
+        }
+      }
+    }
+  }
+}
